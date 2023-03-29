@@ -17,7 +17,7 @@ class UserCollection extends ResourceCollection
         return [
             'data' => $this->collection,
             'success' => true,
-            'message' => 'All User got successfully.'
+            'message' => 'Users got successfully.'
         ];
     }
 }

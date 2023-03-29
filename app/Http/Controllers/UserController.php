@@ -21,11 +21,8 @@ class UserController extends Controller
         $this->userRepository = $userRepository;
     }
 
-    public function index(IndexUserRequest $request)
+    public function index()
     {
-        if ($request->has('uuid')) {
-            return new UserResource($this->userRepository->getById($request->validated()['uuid']));
-        }
         return new UserCollection($this->userRepository->all());
     }
 
