@@ -33,10 +33,6 @@ class UserRepositoryImpl implements UserRepository
     public function update(array $newData)
     {
         $user = $this->user->where('uuid', $newData['uuid']);
-        // $userWithEmail = $this->user->where('email', $newData['email'])->first();
-        // if ($newData['email'] == $user->first()->email || $userWithEmail != null) {
-        //     unset($newData['email']);
-        // }
         $user->update($newData);
         return $user->first();
     }
