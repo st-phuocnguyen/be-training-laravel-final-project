@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\User;
 
 interface UserRepository
 {
@@ -12,5 +12,5 @@ interface UserRepository
 
     public function update(array $new);
 
-    public function delete($id);
+    public function delete($uuid);
 }

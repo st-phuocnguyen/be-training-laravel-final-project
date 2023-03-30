@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Resource;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserResource extends JsonResource
+class TaskResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,9 +18,16 @@ class UserResource extends JsonResource
             return [];
         }
         return [
-            'uuid' => $this->uuid,
-            'name' => $this->name,
-            'email' => $this->email,
+            'id' => $this->id,
+            'title' => $this->title,
+            'description' => $this->description,
+            'type' => $this->type,
+            'status' => $this->status,
+            'start_date' => $this->start_date,
+            'due_date' => $this->due_date,
+            'assignee' => $this->assignee,
+            'estimate' => $this->estimate,
+            'actual' => $this->actual,
         ];
     }
 
@@ -36,16 +43,16 @@ class UserResource extends JsonResource
     private function getMessage($request)
     {
         if ($request->isMethod('post')) {
-            return "'User created successfully.";
+            return "'Task created successfully.";
         }
         if ($request->isMethod('put')) {
-            return "'User updated successfully.";
+            return "'Task updated successfully.";
         }
         if ($request->isMethod('delete')) {
-            return "'User deleted successfully.";
+            return "'Task deleted successfully.";
         }
         if ($request->isMethod('get')) {
-            return "'User showed successfully.";
+            return "'Task showed successfully.";
         }
     }
 }
