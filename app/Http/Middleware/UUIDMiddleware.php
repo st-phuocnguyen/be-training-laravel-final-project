@@ -3,9 +3,10 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Repositories\User\UserRepository;
 use Symfony\Component\HttpFoundation\Response;
-use App\Repositories\UserRepository;
 
 class UUIDMiddleware
 {
@@ -23,9 +24,16 @@ class UUIDMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!$request->has('uuid') || $this->userRepository->getById($request['uuid']) == null) {
+        if (!Str::isUuid($request['uuid'])) {
             return response()->json([
-                'message' => 'Unauthorized',
+                'message' => 'UUID is missing',
+                'success' => false,
+
+            ], 400);
+        }
+        if ($this->userRepository->getById($request['uuid']) == null) {
+            return response()->json([
+                'message' => 'UUID is invalid',
                 'success' => false,
 
             ], 401);

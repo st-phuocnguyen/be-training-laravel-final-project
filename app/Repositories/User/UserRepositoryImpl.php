@@ -1,17 +1,20 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\User;
 
+use App\Models\Task;
 use App\Models\User;
-use App\Repositories\UserRepository;
+use App\Repositories\User\UserRepository;
 
 class UserRepositoryImpl implements UserRepository
 {
     protected $user;
+    protected $task;
 
-    public function __construct(User $user)
+    public function __construct(User $user, Task $task)
     {
         $this->user = $user;
+        $this->task = $task;
     }
 
     public function all()
@@ -27,7 +30,7 @@ class UserRepositoryImpl implements UserRepository
 
     public function getById($uuid)
     {
-        return $this->user->where('uuid', $uuid)->first();
+        return $this->user->with('task')->where('uuid', $uuid)->firstOrFail();
     }
 
     public function update(array $newData)

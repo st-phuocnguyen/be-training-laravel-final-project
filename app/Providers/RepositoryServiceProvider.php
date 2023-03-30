@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Repositories\UserRepository;
-use App\Repositories\UserRepositoryImpl;
+use App\Repositories\User\UserRepository;
+use App\Repositories\User\UserRepositoryImpl;
+use App\Repositories\Task\TaskRepository;
+use App\Repositories\Task\TaskRepositoryImpl;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -16,6 +18,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             UserRepository::class,
             UserRepositoryImpl::class
+        );
+
+        $this->app->bind(
+            TaskRepository::class,
+            TaskRepositoryImpl::class
         );
     }
 
