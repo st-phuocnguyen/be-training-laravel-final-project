@@ -16,6 +16,7 @@ class UserCollection extends ResourceCollection
     {
         return [
             'data' => $this->collection,
+            'total_rows' => $this->collection->count(),
             'success' => true,
             'message' => 'Users got successfully.'
         ];
